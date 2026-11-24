@@ -1,9 +1,5 @@
 # تمرین ساخت و اجرای پروژه چندفایلی در زبان C با Makefile
 
-**نام درس:** ---\
-**نام دانشجو:** ---\
-**موضوع تمرین:** ساخت پروژه چندفایلی، کامپایل و اجرای برنامه با استفاده
-از `make`
 
 ------------------------------------------------------------------------
 
@@ -12,33 +8,29 @@
 ابتدا پوشه پروژه را می‌سازیم و وارد آن می‌شویم:
 
 ``` bash
-mkdir my_c_project
-cd my_c_project
+mkdir tamrin8
+cd tamrin8
 ```
 
-سپس فایل `helper.c` را با دستور زیر ایجاد می‌کنیم:
+سپس فایل `helper.c` را ایجاد می‌کنیم:
 
 ``` bash
-cat << 'EOF' > helper.c
 #include <stdio.h>
 
 void greet(void) {
     printf("Hello from helper.c!\n");
 }
-EOF
 ```
 
 در ادامه فایل `main.c` را ایجاد می‌کنیم:
 
 ``` bash
-cat << 'EOF' > main.c
 void greet(void);
 
 int main(void) {
     greet();
     return 0;
 }
-EOF
 ```
 
 در فایل `main.c` تابع `greet` معرفی و در تابع `main` فراخوانی می‌شود.
@@ -50,7 +42,7 @@ EOF
 <!-- تصویر اول ترمینال را در مسیر images/01-create-project.png قرار دهید و خط زیر را از حالت توضیح خارج کنید. -->
 ```
 ```{=html}
-<!-- ![ساخت پوشه پروژه و فایل‌های C](images/01-create-project.png) -->
+ ![ساخت پوشه پروژه و فایل‌های C](/1.png)
 ```
 
 ------------------------------------------------------------------------
@@ -72,16 +64,16 @@ CFLAGS = -g -Wall
 all: my_project
 
 my_project: main.o helper.o
-    $(CC) $(CFLAGS) -o my_project main.o helper.o
+	$(CC) $(CFLAGS) -o my_project main.o helper.o
 
 main.o: main.c
-    $(CC) $(CFLAGS) -c main.c
+	$(CC) $(CFLAGS) -c main.c
 
 helper.o: helper.c
-    $(CC) $(CFLAGS) -c helper.c
+	$(CC) $(CFLAGS) -c helper.c
 
 clean:
-    rm -f main.o helper.o my_project
+	rm -f main.o helper.o my_project
 ```
 
 **نکته مهم:** در خطوط دستوری زیر هر هدف (مانند دستورات کامپایل و `rm`)
